@@ -1,0 +1,95 @@
+.header-container {
+    background: rgb(0, 0, 0);
+}
+
+.header-container nav {
+    height: 80px;
+    width: 100%;
+}
+
+label.title {
+    color: white;
+    font-size: 30px;
+    font-weight: bold;
+    line-height: normal;
+    padding: 0 100px;
+    line-height: 80px;
+}
+
+nav ul {
+    float: right;
+    margin-right: 30px;
+    line-height: 80px;
+}
+nav ul li{
+    display: inline-block;
+}
+
+nav ul li a{
+    color: rgb(252, 252, 252);
+    border-radius: 5px;
+    padding: 10px;
+    margin: 0 20px;
+    font-size: 20px;
+    font-weight: bold;
+    text-decoration: none;
+    text-transform: uppercase;
+
+}
+
+nav ul li a:active,nav ul li a:hover{
+    background-color: rgb(81, 82, 82);
+    transition: .5s;
+}
+
+.checkBtn {
+    font-size: 30px;
+    color: white;
+    line-height: 80px;
+    float: right;
+    margin-right: 40px;
+    display: none;
+}
+
+#hamburger {
+    display: none;
+}
+
+@media (max-width: 952px) {
+    label.title {
+        font-size: 30px;
+        padding-left: 50px;
+    }
+    nav ul li a{
+        font-size: 16px;
+    
+    }
+}
+
+@media (max-width: 858px) {
+    label.title {
+        font-size: 20px;
+        overflow: hidden;
+        padding-left: 20px;
+    }
+    .checkBtn {
+        display: block;
+    }
+    ul {
+        position: fixed;
+        width: 50%;
+        height: 100vh;
+        top: 0px;
+        background: rgb(48, 48, 48);
+        text-align: center;
+        left: -100%;
+        transition: all .5s;
+    }
+    nav ul li {
+        display: block;
+    }
+
+    #hamburger:checked ~ ul {
+        left: 0;
+    }
+}

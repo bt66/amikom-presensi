@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: amikom-presensi
+  name: amikom-presensi
+spec:
+  selector:
+    matchLabels:
+      run: amikom-presensi
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        run: amikom-presensi
+    spec:
+      containers:
+        - name: amikom-presensi
+          image: registry.carakan.id/amikom-presensi:latest
+          ports:
+            - containerPort: 80
+      imagePullSecrets:
+        - name: carakan-registry
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: amikom-presensi
+  name: amikom-presensi
+spec:
+  type: NodePort
+  selector:
+    run: amikom-presensi
+  ports:
+    - port: 80
+      #targetPort: 80
+      nodePort: 30001
