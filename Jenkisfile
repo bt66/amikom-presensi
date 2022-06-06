@@ -1,0 +1,22 @@
+
+  
+pipeline {
+
+  environment {
+    dockerimagename = "registry.carakan.id/amikom-presensi"
+    dockerImage = ""
+  }
+
+  agent any
+
+  stages {
+
+    stage('Checkout Source') {
+      steps {
+        git 'https://github.com/bt66/presensi-web'
+      }
+    }
+
+  }
+
+}
