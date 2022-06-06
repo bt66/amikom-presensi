@@ -13,7 +13,36 @@ pipeline {
 
     stage('Checkout Source') {
       steps {
-        git 'https://github.com/bt66/presensi-web'
+        git branch: 'main', url: 'https://github.com/bt66/presensi-web'
+      }
+    }
+
+    stage('Build image') {
+      steps{
+        script {
+          dockerImage = docker.build dockerimagename
+        }
+      }
+    }
+
+    stage('Pushing Image') {
+      environment {
+               registryCredential = 'registryCarakan'
+           }
+      steps{
+        script {
+          docker.withRegistry( 'https://registry.carakan.id', registryCredential ) {
+            dockerImage.push("latest")
+          }
+        }
+      }
+    }
+
+    stage('Deploying App to Kubernetes') {
+      steps {
+        script {
+          kubernetesDeploy(configs: "deployment.yml", kubeconfigId: "research-kubernetes")
+        }
       }
     }
 
