@@ -1,5 +1,3 @@
-
-  
 pipeline {
 
   environment {
@@ -13,7 +11,7 @@ pipeline {
 
     stage('Checkout Source') {
       steps {
-        git branch: 'main', url: 'https://github.com/bt66/presensi-web'
+        git 'https://github.com/bt66/presensi-web.git'
       }
     }
 
@@ -45,7 +43,5 @@ pipeline {
         }
       }
     }
-
   }
-
 }
